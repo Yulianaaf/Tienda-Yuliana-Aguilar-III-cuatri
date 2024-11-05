@@ -24,10 +24,11 @@ public class Categoria implements Serializable {
     private String rutaImagen;
     private boolean activo;
     
+    
+    //semana 8
     @OneToMany
     @JoinColumn(name="id_categoria")
     List<Producto> productos;
-
     public Categoria() {
     }
 

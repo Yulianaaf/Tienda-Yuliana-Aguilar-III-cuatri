@@ -1,3 +1,5 @@
+/// semana 8
+
 package com.tienda.domain;
  
 import jakarta.persistence.*;
@@ -29,7 +31,7 @@ public class Producto implements Serializable {
  
     public Producto() {        
     }
- 
+ // producto
  
     public Producto(String descripcion, String detalle, double precio, int existencias, String imagen, boolean activo) {
         this.descripcion = descripcion;
