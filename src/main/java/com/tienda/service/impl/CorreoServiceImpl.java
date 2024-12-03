@@ -14,7 +14,6 @@ public class CorreoServiceImpl implements CorreoService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Override
       public void enviarCorreoHtml(
               String para, 
               String asunto, 
