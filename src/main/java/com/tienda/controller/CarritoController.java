@@ -1,13 +1,15 @@
 package com.tienda.controller;
 
-import com.tienda.domain.*;
-import com.tienda.service.*;
+import com.tienda.domain.Producto;
+import com.tienda.domain.Item;
+import com.tienda.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.tienda.service.ProductoService;
 
 @Controller
 public class CarritoController {
@@ -15,13 +17,23 @@ public class CarritoController {
     private ItemService itemService;
     @Autowired
     private ProductoService productoService;
+    
+    @GetMapping("/")
+    private String listado(Model model) {
+        var productos = productoService.getProductos(false);
+        model.addAttribute("productos", productos);
+        return "/index";
+    }
 
     //Para ver el carrito
     @GetMapping("/carrito/listado")
     public String inicio(Model model) {
         var items = itemService.gets();
         model.addAttribute("items", items);
-        var carritoTotalVenta = itemService.getTotal();
+        var carritoTotalVenta = 0;
+        for (Item i : items) {
+            carritoTotalVenta += (i.getCantidad() * i.getPrecio());
+        }
         model.addAttribute("carritoTotal", 
                 carritoTotalVenta);
         return "/carrito/listado";
@@ -54,7 +66,7 @@ public class CarritoController {
     public String modificarItem(Item item, Model model) {
         item = itemService.get(item);
         model.addAttribute("item", item);
-        return "/carrito/modifica";
+        return "/carrito/modificar";
     }
 
     //Para eliminar un elemento del carrito
@@ -67,7 +79,7 @@ public class CarritoController {
     //Para actualizar un producto del carrito (cantidad)
     @PostMapping("/carrito/guardar")
     public String guardarItem(Item item) {
-        itemService.update(item);
+        itemService.actualiza(item);
         return "redirect:/carrito/listado";
     }
 

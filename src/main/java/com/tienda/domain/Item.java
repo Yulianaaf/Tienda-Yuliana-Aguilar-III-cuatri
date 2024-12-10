@@ -1,6 +1,5 @@
 package com.tienda.domain;
 
-import com.tienda.domain.Producto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,5 +21,9 @@ public class Item extends Producto {
         super.setActivo(producto.isActivo());
         super.setRutaImagen(producto.getRutaImagen());
         this.cantidad = 0;
+    }
+
+    public String getCantidad() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
