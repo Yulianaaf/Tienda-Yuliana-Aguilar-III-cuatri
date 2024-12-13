@@ -1,9 +1,9 @@
 package com.tienda.service.impl;
 
 
-import com.tienda_vt.dao.*;
-import com.tienda_vt.domain.*;
-import com.tienda_vt.services.*;
+import com.tienda.dao.*;
+import com.tienda.domain.*;
+import com.tienda.service.*;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +80,6 @@ public class ItemServiceImpl implements ItemService {
         session.setAttribute("listaItems", listaItems);
     }
 
-    @Override
     public void update(Item item) {
         List<Item> listaItems = (List) session.getAttribute("listaItems");
         if (listaItems != null) {
@@ -170,5 +169,10 @@ public class ItemServiceImpl implements ItemService {
             }
         }
         return total;
+    }
+
+    @Override
+    public void actualiza(Item item) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
